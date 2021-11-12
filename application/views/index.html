@@ -1,0 +1,259 @@
+<style type="text/css">
+  table,
+  th,
+  tr,
+  td {
+    text-align: center;
+  }
+
+  .swal2-popup {
+    font-family: inherit;
+    font-size: 1.2rem;
+  }
+
+  .btn-group,
+  .btn-group-vertical {
+    position: relative;
+    display: initial;
+    vertical-align: middle;
+  }
+</style>
+<style>
+  .btn btn-success {
+    background-color: white;
+    border: none;
+    color: white;
+    padding: 12px 30px;
+    cursor: pointer;
+    font-size: 20px;
+  }
+
+  /* Darker background on mouse-over */
+  .btn:hover {
+    background-color: RoyalBlue;
+  }
+</style>
+</head>
+
+<body>
+
+  <section class="content">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="box box-info">
+          <div class='box-header  with-border'>
+            <?php if (user_role()->nama_akses == 'pulleader' || $this->session->userdata('role') == 4 || user_role()->id_akses == 4 || user_role()->nama_akses == 'admin' || $this->session->userdata('role') == 1 || user_role()->id_akses == 1) : ?>
+              <a href="<?php echo base_url("index.php/Service/export_service"); ?>"> <button class="btn btn-success">Download</button></a>
+              <br>
+              <br>
+            <?php endif ?>
+            <h3 class='box-title'>SERVICE & SPARE PARTS PROCESS DETAIL REPORT</h3>
+
+          </div>
+          <div class="box-body table-responsive">
+            <table id="" class="table table-bordered table-hover ">
+              <thead>
+                <?php $no = 0;
+                      $r=$record;
+                      $cek  = $this->db->get_where('rutin', ['id_rutin' => $r->id_rutin])->row();
+                      $list = $this->db-A>get_where('detail_rutin', ['id_rutin' => $r->id_rutin])->result();
+                      $cek1 = $this->db->get_where('tbl_noted', ['id_service' => $r->id_service, 'for' => 'non-rutin'])->result();
+                    ?>
+                <tr class="bg-primary" style="font-size: 14px;">
+                  <th >Tanggal Permintaan:  <?php echo $r->p3k_date; ?></th> &ensp; &ensp; <th>Tanggal P3K: <?php echo $r->approval_ga_datetime; ?></th> <th> &ensp; &ensp; Nomor P3K:  <?php echo $r->ga_no; ?></th>
+              <th>  &ensp; &ensp;    Tanggal Spk:  <?php echo $r->approval_ga_datetime; ?> </th> <th>   &ensp; &ensp;    Nomor Spk:  <?php echo $r->asmen_no; ?></th> <th>  &ensp; &ensp;    Tanggal Selesai Spk:  <?php echo $r->finish_date; ?></th>
+                  </th>
+          </tr>
+      </table>
+          </div>
+          <div class="box-body table-responsive">
+            <table id="" class="table table-bordered table-hover ">
+              <thead>
+                <tr class="bg-primary" style="font-size: 14px;">
+                  <th >Nomor Plat:  <?php echo $r->plat_nomor; ?></th> <th> &ensp; &ensp;Merk Kendaraan: <?php echo $r->merk_mobil; ?> </th> <th>&ensp; &ensp; Km Sekarang:  <?php echo $cek->km; ?></th> <th> &ensp; &ensp;    Nama Pemakai:  <?php echo $r->nama; ?></th> <th>&ensp; &ensp; Nomor P3K:  <?php echo $r->ga_no; ?></th>
+                  </th>
+                </tr>
+          <tr class="bg-primary" style="font-size: 14px;">
+            <th >Nomor Spk:  <?php echo $r->ga_no; ?></th> <th> &ensp; &ensp;Jenis Kendaraan: <?php echo $r->jenis; ?> </th> <th>&ensp; &ensp;Tahun Kendaraan: <?php echo $r->tahun; ?></th> <th> &ensp; &ensp;  Departement:  <?php echo $r->nama_kategori; ?></th> <th>&ensp; &ensp; Nomor Spk:  <?php echo $r->asmen_no; ?></th>
+            </th>
+    </tr>
+  </table>
+          </div>
+          <div class="row" >
+            <div class="col-md-12">
+              <div class="col-sm-4"   class="bg-primary">
+                    <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">Pemeriksaan Rutin</h5>
+                        <div class="form-group" >
+                          <label for="driver" class="control-label col-md-4" >KM</label>
+                          <input type="text" name="sp3no" class="form-control " value="<?= $cek->km ?>" readonly="readonly">
+                        </div>
+
+                            <div class="form-group">
+                              <label for="driver" class="control-label">Item Service</label>
+                              <ol>
+                                <?php foreach ($list as $l) {
+                                  echo "<li>" . $l->keterangan . '</li>';
+                                } ?>
+                              </ol>
+                            </div>
+                        <p class="card-text"></p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-4"   class="bg-primary">
+                        <div class="card">
+                          <div class="card-body">
+                            <h5 class="card-title">Pemeriksan Non Rutin</h5>
+                            <div class="modal-body">
+                              <div class="form-group">
+                                <label for="driver" class="control-label">Item </label>
+                                <ol>
+                                  <?php foreach ($cek1 as $l) {
+                                    echo "<li>" . $l->text . '</li>';
+                                  } ?>
+                                </ol>
+                              </div>
+                            </div>
+                            <p class="card-text"></p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-sm-4"   class="bg-primary">
+                            <div class="card">
+                              <div class="card-body">
+                                <h5 class="card-title">Body Repair</h5>
+                                <p class="card-text"></p>
+                                <div class="form-group">
+                                  <label for="driver" class="control-label">Item </label>
+                                  <ol>
+                                    <?php foreach ($cek1 as $l) {
+                                      echo "<li>" . $l->text . '</li>';
+                                    } ?>
+                                  </ol>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+            </div>
+              </div>
+              <div class="box-body table-responsive">
+                <table id="" class="table table-bordered table-hover ">
+                  <thead>
+                    <tr class="bg-primary" style="font-size: 14px;">
+                    <th >Approval Atassan <br> Date:  <?php echo $r->approval_sp_datetime; ?></br> <th> &ensp; &ensp; Approval GA Supervisor <br>Date: <?php echo $r->approval_ga_datetime; ?> </br></th> <th>&ensp; &ensp;Approval GA Asmen <br> Date:  <?php echo $r->approve_asmen; ?></th> </br>
+                    </tr>
+
+      </table>
+              </div>
+              <div class="box-body table-responsive">
+                <table id="" class="table table-bordered table-hover ">
+                  <thead>
+                    <tr class="bg-primary" style="font-size: 14px;">
+                      <th colspan="12">History Pemeriksaan Kendaraan</th>
+                      </tr>
+                        <tr class="bg-primary" style="font-size: 14px;">
+                        <th>No.</th>
+                          <th>No. Plat</th>
+                          <th>Pemakai</th>
+                          <th>Dept</th>
+                          <th>No. P3K</th>
+                          <th>Tgl. P3K</th>
+                          <th>No. SPK</th>
+                          <th>Tgl.SPK</th>
+                          <th>Tgl. Selesai SPK</th>
+                          <th>Services Rutin</th>
+                          <th>Non Rutin</th>
+                          <th>Body Repair</th>
+                      </tr>
+                      <tr>
+                        <td style="font-size: 10px;"><?php echo ++$no; ?></td>
+                        <td style="font-size: 10px;"><?php echo $r->plat_nomor; ?></td>
+                        <td style="font-size: 10px;"><?php echo $r->nama; ?></td>
+                        <td style="font-size: 10px;"><?php echo $r->nama_kategori; ?></td>
+                        <td style="font-size: 10px;"><?php echo $r->ga_no; ?></td>
+                        <td style="font-size: 10px;"><?php echo $r->approval_ga_datetime; ?></td>
+                        <td style="font-size: 10px;"><?php echo $r->asmen_no; ?></td>
+                        <td style="font-size: 10px;"><?php echo $r->approve_asmen; ?></td>
+                        <td style="font-size: 10px;"><?php echo $r->finish_date; ?></td>
+                        <td>
+                          <div class="card">
+                          <div class="card-body">
+                            <h5 class="card-title">Pemeriksaan Rutin</h5>
+                            <div class="form-group" >
+                              <label for="driver" class="control-label col-md-4" >KM</label>
+                              <input type="text" name="sp3no" class="form-control " value="<?= $cek->km ?>" readonly="readonly">
+                            </div>
+                                <div class="form-group">
+                                  <label for="driver" class="control-label">Item Service</label>
+                                  <ol>
+                                    <?php foreach ($list as $l) {
+                                      echo "<li>" . $l->keterangan . '</li>';
+                                    } ?>
+                                  </ol>
+                                </div>
+                            <p class="card-text"></p>
+                          </div>
+                        </div>
+                        </td>
+                        <td>
+                          <div class="card">
+                            <div class="card-body">
+                              <h5 class="card-title">Pemeriksan Non Rutin</h5>
+                              <div class="modal-body">
+                                <div class="form-group">
+                                  <label for="driver" class="control-label">Item </label>
+                                  <ol>
+                                    <?php foreach ($cek1 as $l) {
+                                      echo "<li>" . $l->text . '</li>';
+                                    } ?>
+                                  </ol>
+                                </div>
+                              </div>
+                              <p class="card-text"></p>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="card">
+                            <div class="card-body">
+                              <h5 class="card-title">Body Repair</h5>
+                              <p class="card-text"></p>
+                              <div class="form-group">
+                                <label for="driver" class="control-label">Item </label>
+                                <ol>
+                                  <?php foreach ($cek1 as $l) {
+                                    echo "<li>" . $l->text . '</li>';
+                                  } ?>
+                                </ol>
+                              </div>
+                            </div>
+                          </div>
+                        </td>
+                          </tr>
+
+        </table>
+              </div>
+
+          </div>
+        </div>
+
+    </div>
+  </section>
+</body>
+
+<!-- Modal Rutin-->
+
+
+
+
+
+<!-- Modal non Rutin-->
+
+
+<!-- Modal Body Repair-->
+
+
+
+<script src="<?php echo base_url() ?>assets/app/js/alert.js"></script>
