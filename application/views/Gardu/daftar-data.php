@@ -187,6 +187,7 @@
 									</div>
 									<div class="form-group my-2">
 										<div id="my_camera" class="border shadow-sm h-auto"></div>
+										<div id="results"></div>
 									</div>
 									<div class="form-group">
 										<label>Jam</label>
@@ -279,8 +280,11 @@
 
 		function time_in(id) {
 			$("#id_operational_in").val(id);
+			$("#results").html("")
+			$("#my_camera").html("")
 		};
 		$(".image-x").on("change", function() {
+			$("#results").html("")
 			file = this.files[0];
 			$(".image-label").text(file.name)
 			if (file.type.startsWith('image/')) {
