@@ -14,35 +14,10 @@
 	<div class="main-container">
 		<div class="pd-ltr-20 xs-pd-20-10">
 			<div class="min-height-200px">
-				<?php $this->load->view("Template/page-header", ['title' => "Daftar Distribusi Gardu"]); ?>
+				<?php $this->load->view("Template/page-header", ['title' => "Approval Operational Gardu"]); ?>
 				<!-- Content -->
 				<div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
 					<div class="pb-20">
-						<div class="pd-20">
-							<div class="row">
-								<a>Report Distributional Gardu<a />
-							</div>
-						</div>
-						<div class="container">
-							<div class="row">
-								<div class="col-md-6 ">
-									<?php
-									if (user_role()->nama_akses != 'Management' || $this->session->userdata('role') != 4 || user_role()->id_akses != 4) {
-										echo anchor('Gardu/export', 'Download', array('class' => 'btn btn-success'));
-									}
-									?>
-								</div>
-								<div class="col-md-6  ">
-									<?php
-									if (user_role()->nama_akses != 'Management' || $this->session->userdata('role') != 4 || user_role()->id_akses != 4) {
-										echo anchor('Gardu/post', 'Tambah Data', array('class' => 'btn btn-success'));
-									}
-									?>
-
-								</div>
-							</div>
-						</div>
-						<br>
 						<?php if ($this->session->flashdata("image")) : ?>
 							<script type="text/javascript">
 								alert("<?= $this->session->flashdata("image"); ?>")
