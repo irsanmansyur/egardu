@@ -85,15 +85,12 @@ foreach ($pieces as $key) {
 			<?php
 			$foto = $this->session->userdata['foto'];
 			$site = '';
-
-
 			$role = $this->session->userdata('role');
 			$role = explode(',', $role);
 			$arr_role = [];
 			for ($i = 0; $i < count($role); $i++) {
 				$arr_role[] = $role[$i];
 			}
-
 			$getRole = $this->db->query("SELECT * FROM role where id_akses in ('" . implode("','", $arr_role) . "') ")->result_array();
 			?>
 
