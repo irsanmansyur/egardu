@@ -262,10 +262,28 @@
 			$("#imagepreview").attr("src", src);
 		}
 		$("#browse-tab").on("click", () => {
-			$("#results").html("");
-			// batal preview
+			$("#my_camera").html("");
 			Webcam.unfreeze();
 		})
+		$("#home-tab").on("click", () => {
+			Webcam.set({
+				width: 400,
+				height: 390,
+				image_format: 'jpeg',
+				jpeg_quality: 90
+			});
+			Webcam.attach('#my_camera');
+		})
+
+		function openCamera() {
+			Webcam.set({
+				width: 400,
+				height: 390,
+				image_format: 'jpeg',
+				jpeg_quality: 90
+			});
+			Webcam.attach('#my_camera');
+		}
 
 		function openOut(id) {
 			Webcam.set({
@@ -293,7 +311,7 @@
 				img.file = file;
 				img.name = "image"
 				img.style.maxHeight = "200px"
-				$("#my_camera").html(img); //  the content will be displayed.
+				$("#results").html(img); //  the content will be displayed.
 
 				const InpImg = document.createElement("input");
 				InpImg.name = "image";
@@ -309,7 +327,7 @@
 					};
 				})(img);
 				reader.readAsDataURL(file);
-				$("#my_camera").append(InpImg)
+				$("#results").append(InpImg)
 			}
 
 
