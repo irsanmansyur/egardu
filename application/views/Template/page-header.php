@@ -25,4 +25,4 @@
 		</div>
 	</div>
 </div>
-<?php $this->load->view("template/alert"); ?>
+<?php $this->load->view("Template/alert"); ?>

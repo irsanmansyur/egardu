@@ -227,6 +227,11 @@
 					<div class="modal-dialog">
 						<div class="modal-content">
 							<style>
+								.modal-previewImg {
+									position: absolute;
+									transition: all 2s ease-in-out;
+								}
+
 								.modal-previewImg:hover #imagepreview {
 									transform: scale(1.5);
 									-ms-transform: scale(1.5);
