@@ -241,7 +241,7 @@
 								}
 							</style>
 							<div class="modal-body">
-								<div class="modal-previewImg" style="overflow: auto;display: inline-block; ">
+								<div class="modal-previewImg" style="overflow: auto;display: inline-block;text-align:center ">
 									<img src="" id="imagepreview" data-dismiss="modal" style="cursor: zoom-out">
 								</div>
 							</div>
@@ -261,6 +261,11 @@
 		function imageZoom(src) {
 			$("#imagepreview").attr("src", src);
 		}
+		$("#browse-tab").on("click", () => {
+			$("#results").html("");
+			// batal preview
+			Webcam.unfreeze();
+		})
 
 		function openOut(id) {
 			Webcam.set({
@@ -311,6 +316,11 @@
 		})
 
 		function take_snapshot() {
+			// preload shutter audio clip
+			var shutter = new Audio();
+			shutter.autoplay = true;
+			shutter.src = navigator.userAgent.match(/Firefox/) ? 'shutter.ogg' : 'shutter.mp3';
+			shutter.play();
 			Webcam.snap(function(data_uri) {
 				$(".image-tag").val(data_uri);
 				document.getElementById('results').innerHTML = '<img src="' + data_uri + '"/>';
