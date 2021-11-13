@@ -2,7 +2,14 @@
 <html>
 
 <head>
+	<link rel="stylesheet" type="text/css" href="<?= base_url('deskapp/'); ?>src/plugins/datatables/css/dataTables.bootstrap4.min.css">
+	<link rel="stylesheet" type="text/css" href="<?= base_url('deskapp/'); ?>src/plugins/datatables/css/responsive.bootstrap4.min.css">
 	<?php $this->load->view("Template/head", ["page_title" => "Report Distributional Gardu"]); ?>
+	<style>
+		.child .dtr-details {
+			width: 100%;
+		}
+	</style>
 </head>
 
 <body>
@@ -23,19 +30,19 @@
 								alert("<?= $this->session->flashdata("image"); ?>")
 							</script>
 						<?php endif; ?>
-						<div class="table-responsive min-vh-100">
-							<table class="table table-striped">
+						<div class="table-responsive pb-20">
+							<table class="data-table table stripe hover nowrap">
 								<thead>
-									<tr style="border-spacing: 10px;  border-collapse: separate;">
-										<th class="table-plus datatable-nosort" style=" margin: 1px; padding-left: 1px; padding-top:10px; font-size: 10px; width: 1%; height:1px;">No</th>
-										<th style=" margin: 1px; padding-left: 1px; font-size: 10px; width: 1%; height:1px; width: 1%;">Tanggal Masuk</th>
-										<th style=" margin: 1px; padding-left: 1px; font-size: 10px; width: 1%; height:1%;">Nama Gardu</th>
-										<th style=" margin: 1px; padding-left: 1px; font-size: 10px; width: 1%; height:1%;">Nama Petugas</th>
-										<th style=" margin: 1px; padding-left: 1px; font-size: 10px; width: 1%; height:1%;">Nip</th>
-										<th style=" margin: 1px; padding-left: 1px; font-size: 10px; width: 1%; height:1%;">Pekerjaan</th>
-										<th style=" margin: 1px; padding-left: 1px; font-size: 10px; width: 1%; height:1%;">Check In</th>
-										<th style=" margin: 1px; padding-left: 1px; font-size: 10px; width: 1%; height:1%;">Check Out</th>
-										<th class="datatable-nosort" style=" margin: 1px; padding-left: 1px; font-size: 10px; width: 1%; height:1%;">Action</th>
+									<tr>
+										<th class="table-plus datatable-nosort">No</th>
+										<th>Tanggal Masuk</th>
+										<th>Nama Gardu</th>
+										<th>Nama Petugas</th>
+										<th>Nip</th>
+										<th>Pekerjaan</th>
+										<th>Check In</th>
+										<th>Check Out</th>
+										<th class="datatable-nosort">Action</th>
 									</tr>
 								<tbody>
 									<?php
@@ -47,16 +54,16 @@
 										$user = $this->db->select('username')->get_where('tbl_user', ['id_user' => $r->id_user])->row();
 
 									?>
-										<tr style="background: white;">
-											<td style="font-size: 10px;"><?php echo ++$no; ?></td>
-											<td style="padding-left: 1px; margin-bottom: 5%; padding-bottom:1px; font-size: 10px; width: 1%; height:5px;"><?php echo $r->date_request; ?></td>
+										<tr>
+											<td class="table-plus"><?php echo ++$no; ?></td>
+											<td><?php echo $r->date_request; ?></td>
 
-											<td style="font-size: 10px;"><?php echo $r->nama_gardu; ?></td>
-											<td style="font-size: 10px;"><?php echo $r->username; ?></td>
-											<td style="font-size: 10px;"><?php echo $r->nip; ?></td>
-											<td style="font-size: 10px;"><?php echo $r->pekerjaan; ?></td>
-											<td style="font-size: 10px;"><?php echo ($r->time_in != null) ? date_format(date_create('2021-10-10 ' . $r->time_in), 'H:i') : ''; ?></td>
-											<td style="font-size: 10px;"> <span data-toggle="modal" data-target="#zoom-image" onclick="imageZoom('<?= base_url("uploads/" . $r->image) ?>')">
+											<td><?php echo $r->nama_gardu; ?></td>
+											<td><?php echo $r->username; ?></td>
+											<td><?php echo $r->nip; ?></td>
+											<td><?php echo $r->pekerjaan; ?></td>
+											<td><?php echo ($r->time_in != null) ? date_format(date_create('2021-10-10 ' . $r->time_in), 'H:i') : ''; ?></td>
+											<td> <span data-toggle="modal" data-target="#zoom-image" onclick="imageZoom('<?= base_url("uploads/" . $r->image) ?>')">
 													<img style="width:60px;height:60px;cursor:zoom-in;" class="mr-3" src="<?= base_url("uploads/" . $r->image); ?>" alt="">
 												</span><?php echo ($r->time_out != null) ? date_format(date_create('2021-10-10 ' . $r->time_out), 'H:i') : ''; ?></td>
 											<td>
@@ -70,7 +77,6 @@
 													<a data-toggle="modal" data-target="#showModalPdf<?= $r->id_operational ?>" class="btn btn-info btn-sm" style="width: 45%;"><span class="fa fa-check"></span></a>
 												<?php endif; ?>
 											</td>
-
 										</tr>
 									<?php
 									endforeach;
@@ -136,7 +142,7 @@
 										<tbody>
 											<tr>
 												<td class="table-plus" style="padding-left: 1px; font-size: 10px; width: 1%; height:10%;"><?php echo ++$no; ?></td>
-												<td style="padding-left: 1px; margin-bottom: 5%; padding-bottom:1px; font-size: 10px; width: 1%; height:5px;"><?php echo $r->date_request; ?></td>
+												<td><?php echo $r->date_request; ?></td>
 												<td style="padding-left: 1px; font-size: 10px; padding-bottom:5px;  width: 1%"><?php echo $r->nama_gardu; ?></td>
 												<td style="padding-left: 1px; font-size: 10px; padding-bottom:5px;  width: 1%"><?php echo $r->username; ?></td>
 												<td style="padding-left: 1px; font-size: 10px; padding-bottom:5px;  width: 1%"><?php echo $r->nip; ?></td>
@@ -172,10 +178,37 @@
 		</div>
 	</div>
 	<?php $this->load->view("Template/script"); ?>
-
+	<script src="<?= base_url("deskapp/"); ?>src/plugins/datatables/js/jquery.dataTables.min.js"></script>
+	<script src="<?= base_url("deskapp/"); ?>src/plugins/datatables/js/dataTables.bootstrap4.min.js"></script>
+	<script src="<?= base_url("deskapp/"); ?>src/plugins/datatables/js/dataTables.responsive.min.js"></script>
+	<script src="<?= base_url("deskapp/"); ?>src/plugins/datatables/js/responsive.bootstrap4.min.js"></script>
 
 	<script src="<?= base_url("deskapp/src/plugins/webcam/webcam.js"); ?>"></script>
 	<script>
+		$('document').ready(function() {
+			$('.data-table').DataTable({
+				scrollCollapse: true,
+				autoWidth: false,
+				responsive: true,
+				columnDefs: [{
+					targets: "datatable-nosort",
+					orderable: false,
+				}],
+				"lengthMenu": [
+					[10, 25, 50, -1],
+					[10, 25, 50, "All"]
+				],
+				"language": {
+					"info": "_START_-_END_ of _TOTAL_ entries",
+					searchPlaceholder: "Search",
+					paginate: {
+						next: '<i class="ion-chevron-right"></i>',
+						previous: '<i class="ion-chevron-left"></i>'
+					}
+				},
+			});
+		})
+
 		function imageZoom(src) {
 			$("#imagepreview").attr("src", src);
 		}

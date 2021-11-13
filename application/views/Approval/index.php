@@ -145,6 +145,9 @@
 
 	foreach ($AllData as $r) {
 		$nama_driver = '';
+
+
+
 	?>
 
 		<div class="modal fade" id="showModalPdf<?= $r->id_operational; ?>" tabindex="-1" aria-labelledby="printModalLabel" aria-hidden="true">
