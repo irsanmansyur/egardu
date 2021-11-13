@@ -27,26 +27,23 @@
 					<div class="pb-20">
 						<div class="pd-20">
 							<div class="row">
-								<a>Report Distributional Gardu<a />
+								<span>Report Distributional Gardu</span>
 							</div>
 						</div>
-						<div class="container">
-							<div class="row">
-								<div class="col-md-6 ">
-									<?php
-									if (user_role()->nama_akses != 'Management' || $this->session->userdata('role') != 4 || user_role()->id_akses != 4) {
-										echo anchor('Gardu/export', 'Download', array('class' => 'btn btn-success'));
-									}
-									?>
-								</div>
-								<div class="col-md-6  ">
-									<?php
-									if (user_role()->nama_akses != 'Management' || $this->session->userdata('role') != 4 || user_role()->id_akses != 4) {
-										echo anchor('Gardu/post', 'Tambah Data', array('class' => 'btn btn-success'));
-									}
-									?>
-
-								</div>
+						<div class="d-flex justify-content-between">
+							<div>
+								<?php
+								if (user_role()->nama_akses != 'Management' || $this->session->userdata('role') != 4 || user_role()->id_akses != 4) {
+									echo anchor('Gardu/export', 'Download', array('class' => 'btn btn-success'));
+								}
+								?>
+							</div>
+							<div>
+								<?php
+								if (user_role()->nama_akses != 'Management' || $this->session->userdata('role') != 4 || user_role()->id_akses != 4) {
+									echo anchor('Gardu/post', 'Tambah Data', array('class' => 'btn btn-success'));
+								}
+								?>
 							</div>
 						</div>
 						<br>
