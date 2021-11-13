@@ -234,8 +234,6 @@ foreach ($pieces as $key) {
 	<div class="main-container">
 		<div class="pd-ltr-20">
 			<?php echo $contents ?>
-
-
 		</div>
 	</div>
 

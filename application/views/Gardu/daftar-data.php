@@ -225,7 +225,7 @@
 					</div>
 				</div>
 				<div id="zoom-image" class="modal fade" role="dialog">
-					<div class="modal-dialog">
+					<div class="modal-dialog modal-lg">
 						<div class="modal-content">
 							<style>
 								.modal-previewImg:hover #imagepreview {
@@ -241,7 +241,7 @@
 								}
 							</style>
 							<div class="modal-body">
-								<div class="modal-previewImg" style="overflow: auto;display: inline-block;text-align:center ">
+								<div class="modal-previewImg" style="overflow: auto;text-align:center ">
 									<img src="" id="imagepreview" data-dismiss="modal" style="cursor: zoom-out">
 								</div>
 							</div>
@@ -264,6 +264,7 @@
 		$("#browse-tab").on("click", () => {
 			$("#my_camera").html("");
 			Webcam.unfreeze();
+			Webcam.off()
 		})
 		$("#home-tab").on("click", () => {
 			Webcam.set({
