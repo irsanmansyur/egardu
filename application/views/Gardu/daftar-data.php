@@ -229,8 +229,7 @@
 						<div class="modal-content">
 							<style>
 								.modal-previewImg {
-									position: absolute;
-									transition: all 2s ease-in-out;
+									transition: all 1s ease-in-out;
 								}
 
 								.modal-previewImg:hover #imagepreview {
