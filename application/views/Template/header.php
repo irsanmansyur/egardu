@@ -6,7 +6,7 @@
 			<form>
 				<div class="form-group mb-0">
 					<i class="dw dw-search2 search-icon"></i>
-					<input type="text" class="form-control search-input" placeholder="Search Here">
+					<input type="text" class="form-control search-input" placeholder="Search Here" value="<?= $search ?? ""; ?>">
 					<div class="dropdown">
 						<a class="dropdown-toggle no-arrow" href="#" role="button" data-toggle="dropdown">
 							<i class="ion-arrow-down-c"></i>

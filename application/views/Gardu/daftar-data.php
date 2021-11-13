@@ -14,7 +14,7 @@
 
 <body>
 	<?php $this->load->view("Template/preloader"); ?>
-	<?php $this->load->view("Template/header"); ?>
+	<?php $this->load->view("Template/header", ['search' => "Aplikasi Ijin Akses Aset/Gardu Distribusi"]); ?>
 	<?php $this->load->view("Template/right-sidebar"); ?>
 	<?php $this->load->view("Template/left-sidebar"); ?>
 	<div class="mobile-menu-overlay"></div>
