@@ -2,19 +2,19 @@
 <html>
 
 <head>
-	<?php $this->load->view("template/head", ["page_title" => "Report Distributional Gardu"]); ?>
+	<?php $this->load->view("Template/head", ["page_title" => "Report Distributional Gardu"]); ?>
 </head>
 
 <body>
-	<?php $this->load->view("template/preloader"); ?>
-	<?php $this->load->view("template/header"); ?>
-	<?php $this->load->view("template/right-sidebar"); ?>
-	<?php $this->load->view("template/left-sidebar"); ?>
+	<?php $this->load->view("Template/preloader"); ?>
+	<?php $this->load->view("Template/header"); ?>
+	<?php $this->load->view("Template/right-sidebar"); ?>
+	<?php $this->load->view("Template/left-sidebar"); ?>
 	<div class="mobile-menu-overlay"></div>
 	<div class="main-container">
 		<div class="pd-ltr-20 xs-pd-20-10">
 			<div class="min-height-200px">
-				<?php $this->load->view("template/page-header", ['title' => "Daftar Distribusi Gardu"]); ?>
+				<?php $this->load->view("Template/page-header", ['title' => "Daftar Distribusi Gardu"]); ?>
 				<!-- Content -->
 				<div class="pd-20 bg-white border-radius-4 box-shadow mb-30">
 					<div class="pb-20">
@@ -249,10 +249,10 @@
 				</div>
 				<!-- end modal  -->
 			</div>
-			<?php $this->load->view("template/footer"); ?>
+			<?php $this->load->view("Template/footer"); ?>
 		</div>
 	</div>
-	<?php $this->load->view("template/script"); ?>
+	<?php $this->load->view("Template/script"); ?>
 
 
 	<script src="<?= base_url("deskapp/src/plugins/webcam/webcam.js"); ?>"></script>
